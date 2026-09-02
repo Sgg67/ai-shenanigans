@@ -20,3 +20,8 @@ REFUSAL_MESSAGE = (
     "I can't answer that -- that information is not in my provided documents. "
     f"I'm an NFL chatbot, so I can help with {CAPABILITIES}."
 )
+
+
+def clean_source_title(raw: str) -> str:
+    """Strip the ' - Wikipedia' suffix Wikipedia page titles carry as metadata."""
+    return raw.replace(" - Wikipedia", "").strip() or "Source"

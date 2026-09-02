@@ -9,7 +9,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from graph.graph import app as graph_app
-from graph.messages import GREETING_MESSAGE
+from graph.messages import GREETING_MESSAGE, clean_source_title
 from graph.prerouter import is_greeting
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -35,10 +35,6 @@ class AskResponse(BaseModel):
     kind: str  # "greeting" | "refusal" | "answer" -- lets the UI style the reply
 
 
-def _clean_title(raw: str) -> str:
-    return raw.replace(" - Wikipedia", "").strip() or "Source"
-
-
 @api.post("/api/ask", response_model=AskResponse)
 def ask(req: AskRequest) -> AskResponse:
     question = (req.question or "").strip()
@@ -53,7 +49,7 @@ def ask(req: AskRequest) -> AskResponse:
         url = doc.metadata.get("source", "")
         if url and url not in seen:
             seen.add(url)
-            sources.append(Source(title=_clean_title(doc.metadata.get("title", "")), url=url))
+            sources.append(Source(title=clean_source_title(doc.metadata.get("title", "")), url=url))
 
     if answer == GREETING_MESSAGE or is_greeting(question):
         kind = "greeting"

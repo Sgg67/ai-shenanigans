@@ -9,16 +9,12 @@ import chainlit as cl
 from dotenv import load_dotenv
 
 from graph.graph import app as graph_app
-from graph.messages import GREETING_MESSAGE
+from graph.messages import GREETING_MESSAGE, clean_source_title
 
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 load_dotenv()
-
-
-def _clean_title(raw: str) -> str:
-    return raw.replace(" - Wikipedia", "").strip() or "Source"
 
 
 @cl.on_chat_start
@@ -42,7 +38,7 @@ async def on_message(message: cl.Message) -> None:
         url = doc.metadata.get("source", "")
         if url and url not in seen:
             seen.add(url)
-            title = _clean_title(doc.metadata.get("title", ""))
+            title = clean_source_title(doc.metadata.get("title", ""))
             elements.append(cl.Text(name=title, content=url, display="inline"))
 
     reply = cl.Message(content=answer, author="BLITZ")
