@@ -1,5 +1,7 @@
 # BLITZ NFL Desk
 
+**Live app:** https://ai-shenanigans.onrender.com
+
 A self-corrective RAG chatbot that answers questions about the NFL. Built with
 [LangGraph](https://github.com/langchain-ai/langgraph), [Pinecone](https://www.pinecone.io/)
 for vector search, Google Gemini for embeddings, and Ollama (cloud or local) for generation.
