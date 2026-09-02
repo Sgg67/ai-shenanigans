@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BLITZ — NFL Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="industry.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <div class="brand">BLITZ</div>
+      <div class="brand-sub">NFL desk / v1.0</div>
+    </div>
+
+    <button type="button" class="new-question" id="new-question">
+      New question
+      <span class="marks marks-accent"><span>+</span><span>+</span><span>+</span><span>+</span></span>
+    </button>
+
+    <div class="side-group" id="coverage-group">
+      <div class="side-label">Coverage</div>
+      <div class="coverage">
+        <div>Teams, players &amp; coaches</div>
+        <div>Rules &amp; scoring</div>
+        <div>Super Bowl &amp; playoffs</div>
+        <div>Draft, stadiums &amp; history</div>
+      </div>
+    </div>
+
+    <div class="side-group" id="history-group" hidden>
+      <div class="side-label">This session</div>
+      <div class="history" id="history"></div>
+    </div>
+
+    <div class="disclaimer">
+      Answers come from an indexed set of NFL reference documents. Not affiliated with any league or club.
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <span class="topbar-title" id="topbar-title">Session — empty</span>
+      <span class="topbar-meta" id="topbar-meta">Ready</span>
+    </header>
+
+    <section class="welcome" id="welcome">
+      <div class="welcome-inner">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="kicker">Kickoff</div>
+          <h1>Alright, what do you want to argue about?</h1>
+          <p>Teams, records, rules, whatever your group chat is wrong about. I answer from an indexed set of NFL documents and cite them.</p>
+        </div>
+
+        <div class="prompt-grid" id="prompt-grid">
+          <button type="button" class="prompt-card" data-q="Which team has won the most Super Bowls?">
+            <span class="prompt-card-label">Records</span>
+            <span class="prompt-card-text">Which team has won the most Super Bowls?</span>
+            <span class="marks marks-neutral"><span>+</span><span>+</span><span>+</span><span>+</span></span>
+          </button>
+          <button type="button" class="prompt-card" data-q="What is a safety worth and how does it happen?">
+            <span class="prompt-card-label">Rules</span>
+            <span class="prompt-card-text">What is a safety worth and how does it happen?</span>
+            <span class="marks marks-neutral"><span>+</span><span>+</span><span>+</span><span>+</span></span>
+          </button>
+          <button type="button" class="prompt-card" data-q="How does the NFL draft work?">
+            <span class="prompt-card-label">Offseason</span>
+            <span class="prompt-card-text">How does the NFL draft work?</span>
+            <span class="marks marks-neutral"><span>+</span><span>+</span><span>+</span><span>+</span></span>
+          </button>
+          <button type="button" class="prompt-card" data-q="How many teams are in the NFL and how are they organized?">
+            <span class="prompt-card-label">Structure</span>
+            <span class="prompt-card-text">How many teams are in the NFL and how are they organized?</span>
+            <span class="marks marks-neutral"><span>+</span><span>+</span><span>+</span><span>+</span></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="transcript" id="transcript" hidden>
+      <div class="thread" id="thread"></div>
+    </section>
+
+    <form class="composer" id="composer">
+      <div class="composer-inner">
+        <input id="input" type="text" autocomplete="off"
+               placeholder="Ask about a team, a player, or a rule…" aria-label="Your question">
+        <button type="submit" class="send" id="send">
+          Send
+          <span class="marks"><span>+</span><span>+</span><span>+</span><span>+</span></span>
+        </button>
+      </div>
+    </form>
+  </main>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>

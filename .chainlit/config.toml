@@ -1,0 +1,10 @@
+[project]
+enable_telemetry = false
+
+[UI]
+name = "BLITZ NFL Desk"
+default_collapse_content = true
+cot = "hidden"
+
+[meta]
+generated_by = "2.12.0"

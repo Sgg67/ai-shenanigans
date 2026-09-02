@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: blitz-nfl-chainlit
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: chainlit run chainlit_app.py --host 0.0.0.0 --port $PORT --headless
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.5
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: PINECONE_INDEX
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OLLAMA_API
+        sync: false
+      - key: OLLAMA_MODEL
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
